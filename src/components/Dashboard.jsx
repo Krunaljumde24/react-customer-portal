@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
   const navigate = useNavigate();
-
   return (
     <div className="bg-gray-100 min-h-screen py-10 px-4 md:px-0">
       <div className="max-w-5xl mx-auto">
