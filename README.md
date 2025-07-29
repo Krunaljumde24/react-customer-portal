@@ -1,12 +1,53 @@
-# React + Vite
+# Customer Portal - Customer Management Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Customer Portal is a modern, responsive React application built with TailwindCSS designed to help businesses manage customer data efficiently. It offers seamless navigation, user authentication, and core customer management features including adding, updating, and searching customers.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Responsive Design:** Clean, modern UI built with React and TailwindCSS for fast and consistent styling.
+- **Routing:** Powered by React Router v7 for smooth SPA navigation.
+- **Authentication Pages:** Login and Signup forms with basic validation and navigation.
+- **Dashboard:** Central hub with quick actions to Add, Update, or Search customers.
+- **Search Filter:** Flexible multi-criteria search for customers.
+- **Reusable Components:** Navbar and Footer components integrated consistently across all pages.
+- **Scalable Structure:** Organized directory for components and pages for easy maintainability.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Tech Stack
+
+- React (latest)
+- TailwindCSS
+- React Router DOM (v6)
+- (Optionally replace icons with Heroicons or React Icons)
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js >= 14.x
+- npm >= 6.x or yarn
+
+### Installation
+
+1. **Clone the repo:**
+git clone https://github.com/yourusername/clientportal.git
+cd clientportal
+
+2. **Install dependencies:**
+npm install
+
+3. **Run the development server:**
+npm run dev
+
+4. **Open your browser:**
+Navigate to `http://localhost:5173` to see the project in action.
+
+---
+
+## Project Structure
+
