@@ -32,7 +32,7 @@ export default function SignUp() {
     // Simulated signup – replace with real signup logic
     setError("");
     setTimeout(() => {
-      navigate("/dashboard");
+      navigate("/login");
     }, 500);
   };
 

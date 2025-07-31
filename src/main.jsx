@@ -9,6 +9,8 @@ import App from "./App";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Dashboard from "./components/Dashboard";
+import CustomerView from "./components/CustomerView";
+import { AuthContextProvider } from "./context/AuthContext";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +41,15 @@ const router = createBrowserRouter([
         path: "dashboard",
         element: <Dashboard />,
       },
+      {
+        path: "customers",
+        children: [
+          {
+            path: "search",
+            element: <CustomerView />,
+          },
+        ],
+      },
     ],
   },
   {
@@ -53,6 +64,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthContextProvider>
+      <RouterProvider router={router} />
+    </AuthContextProvider>
   </StrictMode>
 );
