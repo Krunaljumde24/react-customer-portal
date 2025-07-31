@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Login() {
+  const { authDetail, setAuthDetails } = useContext(AuthContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -21,6 +24,16 @@ export default function Login() {
     }, 400);
   };
 
+  const handleGuestLogin = () => {
+    setAuthDetails({
+      isLoggedIn: true,
+      username: "kjumde1",
+    });
+    setTimeout(() => {
+      navigate("/dashboard");
+    }, 400);
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
@@ -29,8 +42,12 @@ export default function Login() {
           <div className="bg-blue-500 text-white rounded-full h-12 w-12 flex items-center justify-center font-bold text-2xl mb-2">
             CP
           </div>
-          <h2 className="text-2xl font-bold mb-1">Sign In to Customer Portal</h2>
-          <p className="text-gray-500 text-sm">Welcome back! Please login to your account.</p>
+          <h2 className="text-2xl font-bold mb-1">
+            Sign In to Customer Portal
+          </h2>
+          <p className="text-gray-500 text-sm">
+            Welcome back! Please login to your account.
+          </p>
         </div>
 
         {/* Error */}
@@ -41,7 +58,10 @@ export default function Login() {
         )}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block font-medium text-gray-700 mb-1" htmlFor="email">
+            <label
+              className="block font-medium text-gray-700 mb-1"
+              htmlFor="email"
+            >
               Email address
             </label>
             <input
@@ -56,7 +76,10 @@ export default function Login() {
             />
           </div>
           <div>
-            <label className="block font-medium text-gray-700 mb-1" htmlFor="password">
+            <label
+              className="block font-medium text-gray-700 mb-1"
+              htmlFor="password"
+            >
               Password
             </label>
             <input
@@ -74,7 +97,10 @@ export default function Login() {
             <label className="text-gray-600 flex items-center">
               <input type="checkbox" className="mr-2" /> Remember me
             </label>
-            <Link to="/forgot" className="text-blue-500 hover:underline text-sm">
+            <Link
+              to="/forgot"
+              className="text-blue-500 hover:underline text-sm"
+            >
               Forgot password?
             </Link>
           </div>
@@ -84,10 +110,20 @@ export default function Login() {
           >
             Sign In
           </button>
+          <button
+            type="button"
+            className="w-full bg-amber-300 hover:bg-amber-500 text-black rounded py-2 font-semibold transition"
+            onClick={handleGuestLogin}
+          >
+            Guest Login
+          </button>
         </form>
         <div className="text-center mt-5 text-gray-600 text-sm">
           Don't have an account?{" "}
-          <Link to="/signup" className="text-blue-500 hover:underline font-medium">
+          <Link
+            to="/signup"
+            className="text-blue-500 hover:underline font-medium"
+          >
             Sign up
           </Link>
         </div>

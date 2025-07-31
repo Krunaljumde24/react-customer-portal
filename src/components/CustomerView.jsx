@@ -2,9 +2,9 @@ import React from "react";
 
 function CustomerView() {
   return (
-    <div className="bg-gray-100 min-h-screen font-sans">
+    <div className="bg-gray-100 min-h-screen font-sans pt-6">
       {/* Header */}
-      <div className="bg-white shadow-sm p-4 flex items-center justify-between">
+      {/* <div className="bg-white shadow-sm p-4 flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <div className="bg-blue-500 rounded-full p-2 text-white">
             <svg width="24" height="24" fill="none">
@@ -20,9 +20,9 @@ function CustomerView() {
           className="border px-3 py-1 rounded focus:outline-none"
           placeholder="Search customers..."
         />
-      </div>
+      </div> */}
       {/* Top Card */}
-      <div className="bg-white rounded shadow mt-6 mx-8 p-6 flex items-center justify-between">
+      <div className="bg-white rounded shadow mx-8 p-6 flex items-center justify-between">
         <div className="flex items-center space-x-4">
           <div className="bg-blue-500 text-white rounded-full h-16 w-16 flex items-center justify-center text-3xl font-bold">
             SJ
