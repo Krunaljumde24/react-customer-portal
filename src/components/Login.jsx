@@ -1,9 +1,13 @@
 import React, { useContext, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function Login() {
   const { authDetail, setAuthDetails } = useContext(AuthContext);
+
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,13 +29,38 @@ export default function Login() {
   };
 
   const handleGuestLogin = () => {
-    setAuthDetails({
-      isLoggedIn: true,
-      username: "kjumde1",
-    });
-    setTimeout(() => {
-      navigate("/dashboard");
-    }, 400);
+    let obj = {
+      username: "krunaljumde24@gmail.com",
+      password: "pass",
+    };
+
+    login(obj);
+  };
+
+  const login = (req) => {
+    axios
+      .post(apiBaseUrl + "/api/auth/login", req)
+      .then((resp) => {
+        setAuthDetails({
+          isLoggedIn: true,
+          username: req.username,
+          token: resp.data.token,
+        });
+
+        toast.loading("Logging in...", {
+          duration: 2000,
+        });
+
+        setTimeout(() => {
+          navigate("/dashboard");
+          sessionStorage.setItem("token", resp.data.token);
+          toast.success("Welcome " + req.username);
+        }, 2000);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Login failed.");
+      });
   };
 
   return (
