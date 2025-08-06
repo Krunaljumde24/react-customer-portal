@@ -1,19 +1,29 @@
 import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import toast from "react-hot-toast";
 
 export default function Navbar() {
   const { authDetails, setAuthDetails } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   const handleLogout = () => {
-    setAuthDetails({
-      isLoggedIn: false,
-      username: null,
+    toast.loading("Logging out...", {
+      duration: 2000,
     });
+
+    setTimeout(() => {
+      setAuthDetails({
+        isLoggedIn: false,
+        username: null,
+        token: null,
+      });
+      sessionStorage.removeItem("token");
+      navigate("/login");
+    }, 2000);
   };
 
   return (
-    <nav className="bg-white shadow flex items-center justify-between px-8 py-4">
+    <nav className="bg-amber-300 shadow flex items-center justify-between px-8 py-4">
       {/* Logo & Portal Name */}
       <div className="flex items-center space-x-3">
         <div className="bg-blue-500 text-white rounded-full h-10 w-10 flex items-center justify-center font-bold text-xl">

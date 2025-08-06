@@ -11,6 +11,7 @@ import Contact from "./components/Contact";
 import Dashboard from "./components/Dashboard";
 import CustomerView from "./components/CustomerView";
 import { AuthContextProvider } from "./context/AuthContext";
+import CustomerSearch from "./components/CustomerSearch";
 
 const router = createBrowserRouter([
   {
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: "search",
-            element: <CustomerView />,
+            element: <CustomerSearch />,
           },
         ],
       },

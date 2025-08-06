@@ -1,15 +1,13 @@
-import React from "react";
 import Navbar from "./components/Navbar";
-import Login from "./components/Login";
-import SignUp from "./components/SignUp";
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import LandingPage from "./components/LandingPage";
+import { Outlet } from "react-router-dom";
 import Footer from "./components/Footer";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <>
       <Navbar />
+      <Toaster position="top-center" />
       <Outlet />
       <Footer />
     </>
