@@ -12,6 +12,9 @@ import Dashboard from "./components/Dashboard";
 import CustomerView from "./components/CustomerView";
 import { AuthContextProvider } from "./context/AuthContext";
 import CustomerSearch from "./components/CustomerSearch";
+import AddCustomer from "./components/AddCustomer";
+import { AppContextProvider } from "./context/AppContext";
+import LoginTest from "./components/LoginTest";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +52,14 @@ const router = createBrowserRouter([
             path: "search",
             element: <CustomerSearch />,
           },
+          {
+            path: "add",
+            element: <AddCustomer />,
+          },
+          {
+            path: "update",
+            element: <CustomerSearch />,
+          },
         ],
       },
     ],
@@ -56,6 +67,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/login-test",
+    element: <LoginTest />,
   },
   {
     path: "/signup",
@@ -66,7 +81,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthContextProvider>
-      <RouterProvider router={router} />
+      <AppContextProvider>
+        <RouterProvider router={router} />
+      </AppContextProvider>
     </AuthContextProvider>
-  </StrictMode>
+  </StrictMode>,
 );

@@ -6,6 +6,7 @@ export default function SearchFilter({ onSearch }) {
   const [filters, setFilters] = useState({
     name: "",
     email: "",
+    phone: "",
     status: "",
     startDate: "",
     endDate: "",
@@ -24,6 +25,7 @@ export default function SearchFilter({ onSearch }) {
     setFilters({
       name: "",
       email: "",
+      phone: "",
       status: "",
       startDate: "",
       endDate: "",
@@ -31,6 +33,7 @@ export default function SearchFilter({ onSearch }) {
     onSearch({
       name: "",
       email: "",
+      phone: "",
       status: "",
       startDate: "",
       endDate: "",
@@ -62,6 +65,17 @@ export default function SearchFilter({ onSearch }) {
           onChange={handleChange}
           className="mt-1 px-3 py-2 border border-gray-300 rounded focus:outline-blue-500"
           placeholder="Search by email"
+        />
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-700">Mobile No</label>
+        <input
+          type="number"
+          name="phone"
+          value={filters.phone}
+          onChange={handleChange}
+          className="mt-1 px-3 py-2 border border-gray-300 rounded focus:outline-blue-500"
+          placeholder="Search by phone"
         />
       </div>
       <div>

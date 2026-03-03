@@ -3,29 +3,27 @@ import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Login() {
-  const { authDetail, setAuthDetails } = useContext(AuthContext);
-
-  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { login } = useAuth();
   const [error, setError] = useState("");
+
+  const [loginDetails, setLoginDetails] = useState({
+    username: "",
+    password: "",
+  });
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Basic validation example (replace with real auth)
-    if (!email || !password) {
+    if (!loginDetails.username || !loginDetails.password) {
       setError("Please enter both email and password.");
       return;
+    } else {
+      initiateLogin(loginDetails);
+      setError("");
     }
-    setError("");
-    // Simulate login and navigate to dashboard
-    setTimeout(() => {
-      navigate("/dashboard");
-    }, 400);
   };
 
   const handleGuestLogin = () => {
@@ -33,34 +31,24 @@ export default function Login() {
       username: "krunaljumde24@gmail.com",
       password: "pass",
     };
-
-    login(obj);
+    initiateLogin(obj);
   };
 
-  const login = (req) => {
-    axios
-      .post(apiBaseUrl + "/api/auth/login", req)
-      .then((resp) => {
-        setAuthDetails({
-          isLoggedIn: true,
-          username: req.username,
-          token: resp.data.token,
-        });
-
-        toast.loading("Logging in...", {
-          duration: 2000,
-        });
-
-        setTimeout(() => {
-          navigate("/dashboard");
-          sessionStorage.setItem("token", resp.data.token);
-          toast.success("Welcome " + req.username);
-        }, 2000);
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Login failed.");
-      });
+  const initiateLogin = async (req) => {
+    toast.loading("Logging in...", {
+      duration: 1000,
+    });
+    let resp = await login(req);
+    if (resp.success) {
+      setTimeout(() => {
+        navigate("/dashboard");
+        toast.success("Welcome " + resp.user);
+      }, 2000);
+    } else {
+      setTimeout(() => {
+        toast.error("Invalid username or password.");
+      }, 2000);
+    }
   };
 
   return (
@@ -98,8 +86,13 @@ export default function Login() {
               type="email"
               autoComplete="username"
               className="w-full border border-gray-300 px-4 py-2 rounded focus:outline-blue-500"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={loginDetails.username}
+              onChange={(e) =>
+                setLoginDetails((prev) => ({
+                  ...prev,
+                  username: e.target.value,
+                }))
+              }
               required
               placeholder="your@email.com"
             />
@@ -116,8 +109,13 @@ export default function Login() {
               type="password"
               autoComplete="current-password"
               className="w-full border border-gray-300 px-4 py-2 rounded focus:outline-blue-500"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={loginDetails.password}
+              onChange={(e) =>
+                setLoginDetails({
+                  ...loginDetails,
+                  password: [e.target.value],
+                })
+              }
               required
               placeholder="Your password"
             />

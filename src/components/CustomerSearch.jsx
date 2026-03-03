@@ -1,53 +1,49 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SearchFilter from "./SearchFilter";
-import CustomerView from "./CustomerView";
 import CustomerList from "./CustomerList";
 import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
 
 function CustomerSearch() {
-  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
+
+  const { token, setToken, isAuthenticated } = useContext(AuthContext);
+
+  // const [token, setToken] = useState(null);
 
   const [customers, setCustomers] = useState([]);
 
-  const token = sessionStorage.getItem("token");
+  // useEffect(() => {
+  // const authDetails = sessionStorage.getItem("authDetails");
+  // if (authDetails) {
+  // let obj = JSON.parse(authDetails);
+  // setToken(obj.token);
+  // }
+  // });
+
   useEffect(() => {
     axios
-      .get(apiBaseUrl + "/api/customer", {
+      .get(`${API_URL}/api/customers`, {
         headers: {
           Authorization: "Bearer " + token,
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
       })
       .then((res) => {
-        console.log(res);
-        setCustomers(res.data);
+        console.log(res.data);
+        // console.log(JSON.stringify(res.data));
+        // let data = JSON.parse(res.data);
+        // console.log(data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  //   const [customers, setCustomers] = useState([
-  //     {
-  //       id: "1",
-  //       name: "Sarah Johnson",
-  //       customerId: "CUST-001",
-  //       email: "sarah.johnson@email.com",
-  //       tags: ["Premium", "Frequent Buyer"],
-  //     },
-  //     {
-  //       id: "2",
-  //       name: "Michael Lee",
-  //       customerId: "CUST-002",
-  //       email: "michael.lee@email.com",
-  //       tags: ["Standard", "New"],
-  //     },
-  //     // More customers ...
-  //   ]);
-
   return (
     <div className="min-h-screen px-10 py-10 bg-[#f1faee]">
       <SearchFilter />
-      {/* Rest of your customers table/list here */}
       <CustomerList customers={customers} />
     </div>
   );

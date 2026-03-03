@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
+import MessageDialog from "./MessageDialog";
 
 export default function Dashboard() {
   const navigate = useNavigate();
+
+  const { validateSession } = useAuth();
+  useEffect(() => {
+    validateSession();
+  }, []);
   return (
     <div className="bg-gray-100 min-h-screen py-10 px-4 md:px-0">
+      <MessageDialog />
       <div className="max-w-5xl mx-auto">
         {/* Welcome Header */}
         <div className="flex flex-col items-center mb-10">
@@ -24,7 +32,7 @@ export default function Dashboard() {
         <div className="grid md:grid-cols-3 gap-8">
           {/* Add New Customer Action */}
           <div
-            className="bg-white rounded-lg shadow p-8 flex flex-col items-center hover:bg-blue-50 transition cursor-pointer"
+            className="bg-white rounded-lg shadow p-8 flex flex-col items-center hover:bg-blue-50 transition "
             onClick={() => navigate("/customers/add")}
           >
             <div className="bg-blue-100 text-blue-500 p-4 rounded-full mb-3">
@@ -47,7 +55,7 @@ export default function Dashboard() {
 
           {/* Update Existing Customer */}
           <div
-            className="bg-white rounded-lg shadow p-8 flex flex-col items-center hover:bg-yellow-50 transition cursor-pointer"
+            className="bg-white rounded-lg shadow p-8 flex flex-col items-center hover:bg-yellow-50 transition "
             onClick={() => navigate("/customers/update")}
           >
             <div className="bg-yellow-100 text-yellow-600 p-4 rounded-full mb-3">
@@ -71,7 +79,7 @@ export default function Dashboard() {
 
           {/* Search Customers */}
           <div
-            className="bg-white rounded-lg shadow p-8 flex flex-col items-center hover:bg-green-50 transition cursor-pointer"
+            className="bg-white rounded-lg shadow p-8 flex flex-col items-center hover:bg-green-50 transition "
             onClick={() => navigate("/customers/search")}
           >
             <div className="bg-green-100 text-green-600 p-4 rounded-full mb-3">

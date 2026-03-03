@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Navbar() {
-  const { authDetails, setAuthDetails } = useContext(AuthContext);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+
   const navigate = useNavigate();
   const handleLogout = () => {
     toast.loading("Logging out...", {
@@ -12,28 +14,26 @@ export default function Navbar() {
     });
 
     setTimeout(() => {
-      setAuthDetails({
-        isLoggedIn: false,
-        username: null,
-        token: null,
-      });
-      sessionStorage.removeItem("token");
+      setIsAuthenticated(false);
       navigate("/login");
     }, 2000);
   };
 
+  useEffect(() => {
+    if (isAuthenticated) setIsLoggedIn(true);
+    else setIsLoggedIn(false);
+  }, [isAuthenticated]);
+
   return (
     <nav className="bg-amber-300 shadow flex items-center justify-between px-8 py-4">
-      {/* Logo & Portal Name */}
       <div className="flex items-center space-x-3">
         <div className="bg-blue-500 text-white rounded-full h-10 w-10 flex items-center justify-center font-bold text-xl">
           CP
         </div>
         <span className="text-xl font-semibold">Customer Portal</span>
       </div>
-      {/* Links */}
       <div className="flex items-center space-x-6">
-        {authDetails.isLoggedIn ? (
+        {isLoggedIn ? (
           <>
             <NavLink
               to="/dashboard"
@@ -81,9 +81,8 @@ export default function Navbar() {
           </>
         )}
       </div>
-      {/* Auth Actions (optional demo) */}
       <div className="flex items-center space-x-3">
-        {authDetails.isLoggedIn ? (
+        {isLoggedIn ? (
           <button
             className="px-4 py-2 rounded bg-red-400 text-white font-medium hover:bg-blue-600"
             onClick={handleLogout}

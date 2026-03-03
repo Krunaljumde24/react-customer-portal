@@ -3,24 +3,6 @@ import React from "react";
 export default function LandingPage() {
   return (
     <div className="bg-gray-100 min-h-screen font-sans">
-      {/* Header & Nav */}
-      {/* <nav className="bg-white shadow p-4 flex justify-between items-center">
-        <div className="flex items-center space-x-2">
-          <div className="bg-blue-500 rounded-full h-10 w-10 flex items-center justify-center text-white text-xl font-bold">
-            CP
-          </div>
-          <span className="font-semibold text-xl">Customer Portal</span>
-        </div>
-        <div>
-          <button className="bg-blue-500 text-white px-4 py-2 rounded mr-2">
-            Login
-          </button>
-          <button className="border border-blue-500 text-blue-500 px-4 py-2 rounded">
-            Sign Up
-          </button>
-        </div>
-      </nav> */}
-
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center py-20 text-center bg-gradient-to-r from-blue-100 to-white">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">
@@ -33,6 +15,16 @@ export default function LandingPage() {
         <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded text-lg font-semibold transition">
           Get Started
         </button>
+      </section>
+
+      {/* Testimonials */}
+      <section className="max-w-3xl mx-auto my-12 text-center">
+        <div className="text-xl font-semibold">
+          Trusted by over 1,000+ businesses
+        </div>
+        <p className="italic text-gray-500 my-2">
+          "Customer Portal streamlined our workflow overnight!"
+        </p>
       </section>
 
       {/* Features Section */}
@@ -74,19 +66,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
-      {/* Testimonials */}
-      <section className="max-w-3xl mx-auto my-12 text-center">
-        <div className="text-xl font-semibold">
-          Trusted by over 1,000+ businesses
-        </div>
-        <p className="italic text-gray-500 my-2">
-          "Customer Portal streamlined our workflow overnight!"
-        </p>
-      </section>
-
-      {/* Footer */}
-      
     </div>
   );
 }

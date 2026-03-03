@@ -40,7 +40,7 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-gray-100 py-16 px-6">
-      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow p-8">
+      <div className="max-w-7xl mx-auto bg-white rounded-lg shadow p-8">
         <h1 className="text-3xl font-bold text-blue-600 mb-6 text-center">
           Contact Us
         </h1>

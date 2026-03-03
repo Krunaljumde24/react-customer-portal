@@ -3,11 +3,13 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { config } from "dotenv";
 
+import mkcert from "vite-plugin-mkcert";
+
 config();
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [react(), tailwindcss(), mkcert()],
   define: {
     "process.env": process.env,
   },
