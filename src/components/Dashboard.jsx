@@ -1,11 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import MessageDialog from "./MessageDialog";
 
+import { AuthContext } from "../context/AuthContext";
+import toast from "react-hot-toast";
+
 export default function Dashboard() {
   const navigate = useNavigate();
-
+  const { setIsAuthenticated } = useContext(AuthContext);
   const { validateSession } = useAuth();
   useEffect(() => {
     validateSession();

@@ -2,22 +2,20 @@ import React, { useContext, useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { AuthContext } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
-  const navigate = useNavigate();
-  const handleLogout = () => {
-    toast.loading("Logging out...", {
-      duration: 2000,
-    });
+  const { logout } = useAuth();
 
-    setTimeout(() => {
-      setIsAuthenticated(false);
-      navigate("/login");
-    }, 2000);
-  };
+  const navClass = ({ isActive }) =>
+    `${
+      isActive
+        ? "text-blue-600 font-semibold"
+        : "text-gray-700 hover:text-blue-500"
+    } text-xl font-semibold`;
 
   useEffect(() => {
     if (isAuthenticated) setIsLoggedIn(true);
@@ -35,47 +33,19 @@ export default function Navbar() {
       <div className="flex items-center space-x-6">
         {isLoggedIn ? (
           <>
-            <NavLink
-              to="/dashboard"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-blue-600 font-semibold"
-                  : "text-gray-700 hover:text-blue-500"
-              }
-            >
+            <NavLink to="/dashboard" className={navClass}>
               Dashboard
             </NavLink>
           </>
         ) : (
           <>
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-blue-600 font-semibold"
-                  : "text-gray-700 hover:text-blue-500"
-              }
-            >
+            <NavLink to="/" className={navClass}>
               Home
             </NavLink>
-            <NavLink
-              to="/about"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-blue-600 font-semibold"
-                  : "text-gray-700 hover:text-blue-500"
-              }
-            >
+            <NavLink to="/about" className={navClass}>
               About
             </NavLink>
-            <NavLink
-              to="/contact"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-blue-600 font-semibold"
-                  : "text-gray-700 hover:text-blue-500"
-              }
-            >
+            <NavLink to="/contact" className={navClass}>
               Contact
             </NavLink>
           </>
@@ -85,7 +55,7 @@ export default function Navbar() {
         {isLoggedIn ? (
           <button
             className="px-4 py-2 rounded bg-red-400 text-white font-medium hover:bg-blue-600"
-            onClick={handleLogout}
+            onClick={() => logout()}
           >
             Logout
           </button>
