@@ -7,6 +7,11 @@ import { useEffect } from "react";
 import { useAuth } from "./hooks/useAuth";
 
 function App() {
+  const { validateSession } = useAuth();
+
+  useEffect(() => {
+    validateSession();
+  }, []);
   return (
     <>
       <Navbar />

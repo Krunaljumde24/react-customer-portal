@@ -1,5 +1,3 @@
-// src/components/CustomerList.js
-
 import React from "react";
 
 export default function CustomerList({ customers }) {

@@ -1,5 +1,3 @@
-// src/components/SearchFilter.js
-
 import React, { useState } from "react";
 
 export default function SearchFilter({ onSearch }) {
@@ -68,7 +66,9 @@ export default function SearchFilter({ onSearch }) {
         />
       </div>
       <div>
-        <label className="block text-sm font-medium text-gray-700">Mobile No</label>
+        <label className="block text-sm font-medium text-gray-700">
+          Mobile No
+        </label>
         <input
           type="number"
           name="phone"

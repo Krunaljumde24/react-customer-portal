@@ -15,7 +15,7 @@ export default function Navbar() {
       isActive
         ? "text-blue-600 font-semibold"
         : "text-gray-700 hover:text-blue-500"
-    } text-xl font-semibold`;
+    } font-medium font-semibold bg-amber-100 py-2 px-4 rounded-lg`;
 
   useEffect(() => {
     if (isAuthenticated) setIsLoggedIn(true);
@@ -24,7 +24,7 @@ export default function Navbar() {
 
   return (
     <nav className="bg-amber-300 shadow flex items-center justify-between px-8 py-4">
-      <div className="flex items-center space-x-3">
+      <div className="flex items-center space-x-3 ">
         <div className="bg-blue-500 text-white rounded-full h-10 w-10 flex items-center justify-center font-bold text-xl">
           CP
         </div>
