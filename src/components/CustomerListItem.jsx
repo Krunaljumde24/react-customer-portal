@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function CustomerList({ customers }) {
+export default function CustomerListItem({ customers }) {
+  const navigate = useNavigate();
   if (!customers || customers.length === 0) {
     return (
       <div className="text-center text-gray-500 mt-10">No customers found.</div>
@@ -40,7 +42,13 @@ export default function CustomerList({ customers }) {
               </span>
             ))}
           </div>
-          <button className="mt-auto bg-orange-200  text-black px-4 py-2 rounded hover:bg-orange-300 transition">
+          <button
+            className="mt-auto bg-orange-200  text-black px-4 py-2 rounded hover:bg-orange-300 transition"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate(`/customers/view/${customer.customerId}`);
+            }}
+          >
             View Profile
           </button>
         </div>

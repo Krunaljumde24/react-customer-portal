@@ -53,6 +53,10 @@ const router = createBrowserRouter([
             element: <CustomerSearch />,
           },
           {
+            path: "view/:id",
+            element: <CustomerView />,
+          },
+          {
             path: "add",
             element: <AddCustomer />,
           },

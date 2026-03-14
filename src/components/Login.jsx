@@ -45,9 +45,7 @@ export default function Login() {
         toast.success("Welcome " + resp.user);
       }, 2000);
     } else {
-      setTimeout(() => {
-        toast.error("Invalid username or password.");
-      }, 2000);
+      toast.error("Failed to login.");
     }
   };
 

@@ -39,7 +39,6 @@ export const useAuth = () => {
           Authorization: "Bearer " + token,
         },
       });
-      console.log(response);
       return {
         success: true,
         message: "Session is valid.",
